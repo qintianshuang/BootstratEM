@@ -69,12 +69,16 @@ public class PoiUtils {
      */
     public static void outExcel(HttpServletResponse response, String fileName, Workbook workBook) throws IOException {
         try {
+            String inlineType ="attachment"; //是否内联附件
             response.setContentType("application/octet-stream");
             response.setHeader("name", fileName);
+            response.setHeader("Content-Disposition",inlineType
+                    +"; filename = \""+ fileName + ".xls\"");
+            response.setHeader("Content-Disposition", "must-revalidate, post-check=0, pre-check=0");
             response.setHeader("Cache-Control", "must-revalidate, post-check=0, pre-check=0");
             response.setHeader("Pragma", "public");
             response.setDateHeader("Expires", 0);
-            response.setHeader("Content-disposition", "attachment; filename=\"" + URLEncoder.encode(fileName + ".xls", "UTF-8") + "\"");
+            response.setHeader("Content-disposition", "attachment; filename=\"" + URLEncoder.encode(fileName, "UTF-8") + "\"");
             workBook.write(response.getOutputStream()); // 输出流控制workbook
             response.getOutputStream().flush();
             response.getOutputStream().close();
@@ -248,7 +252,7 @@ public class PoiUtils {
     public static<T extends Object> Workbook exportExcel(Class<T> clazz, String sheetName, List<T> objectList) throws Exception {
         Workbook workbook = new HSSFWorkbook();
         T job = null;
-        Sheet sheet = workbook.getSheet(sheetName);
+        Sheet  sheet = workbook.createSheet(sheetName);
         Row row = sheet.createRow(0);
         job = clazz.newInstance();
         ExcelAnnotation excelAnnotation = null;
@@ -260,6 +264,10 @@ public class PoiUtils {
                 field.setAccessible(true);
                 excelAnnotation = field.getAnnotation(ExcelAnnotation.class);
                 int column = excelAnnotation.column();
+                boolean isRow = excelAnnotation.isRow();
+                if (isRow){
+                    break;
+                }
                 String name = excelAnnotation.name();
                 Cell cell = row.createCell(column);
                 style = PoiUtils.setFormat(workbook, cell);
@@ -270,12 +278,17 @@ public class PoiUtils {
         }
         for (int i = 0; i < objectList.size(); i++) {
             job = objectList.get(i);
+            row = sheet.createRow(i + 1);
             fields = job.getClass().getDeclaredFields();
             for (Field field : fields) {
                 if (field.isAnnotationPresent(ExcelAnnotation.class)) {
                     // 对象的属性的访问权限设置为可访问
                     field.setAccessible(true);
                     excelAnnotation = field.getAnnotation(ExcelAnnotation.class);
+                    boolean isRow = excelAnnotation.isRow();
+                    if (isRow){
+                        break;
+                    }
                     int column = excelAnnotation.column();
                     Cell cell = row.createCell(column);
                     cell.setCellValue(field.get(job).toString());

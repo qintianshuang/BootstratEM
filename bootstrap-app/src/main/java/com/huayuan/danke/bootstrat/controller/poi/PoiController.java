@@ -23,8 +23,8 @@ public class PoiController {
 
     @ApiOperation(value = "下载文件", notes = "文件导出")
     @GetMapping("/download")
-    public void downloadFile(HttpServletResponse response) {
-        String fileName = "文件下载.xls";
+    public void downloadFile(HttpServletResponse response) throws Exception {
+        String fileName = "文件下载";
         Workbook workbook = poiFileService.downloadFile();
          PoiUtils.outExcel(response, fileName, workbook);
     }

@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Api(value = "文件处理", description = "检查模板操作")
 @Controller
-@RequestMapping("/index")
+@RequestMapping("/plan")
 public class BootstrapController {
 
     @ApiOperation(value = "首页", notes = "引导")
@@ -19,8 +19,8 @@ public class BootstrapController {
             @ApiResponse(code=400,message="请求参数没填好"),
             @ApiResponse(code=404,message="请求路径没有或页面跳转路径不对")
     })
-    @GetMapping(value = "/index")
-    public String index() {
-        return "index";
+    @GetMapping(value = "/main")
+    public String main() {
+        return "main";
     }
 }

@@ -25,7 +25,11 @@ public class DemoTemplate {
     @ExcelAnnotation(isRow = true)
     private String row;
 
-    public DemoTemplate( String name,  String sex,  String company,  String address) {
+    public DemoTemplate() {
+
+    }
+
+    public DemoTemplate(String name, String sex, String company, String address) {
         this.name = name;
         this.sex = sex;
         this.company = company;
