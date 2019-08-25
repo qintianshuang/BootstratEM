@@ -118,4 +118,12 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
+
+    <modules>
+        <module>../bootstrap-app</module>
+        <module>../bootstrap-bean</module>
+        <module>../bootstrap-common</module>
+        <module>../bootstrap-service</module>
+        <module>../bootstrap-web</module>
+    </modules>
 </project>
