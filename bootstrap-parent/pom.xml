@@ -13,7 +13,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>1.8</java.version>
-        <fastjson.version>1.2.46</fastjson.version>
+        <fastjson.version>1.2.83</fastjson.version>
         <mybatis.version>1.3.1</mybatis.version>
         <xml-apis.version>1.4.01</xml-apis.version>
         <httpclient.version>4.5.5</httpclient.version>
