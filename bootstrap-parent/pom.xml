@@ -21,7 +21,7 @@
         <mapper-starter.version>1.2.3</mapper-starter.version>
         <beanUtils.version>1.9.3</beanUtils.version>
         <POI.version>3.17</POI.version>
-        <mysql-connector.version>5.1.45</mysql-connector.version>
+        <mysql-connector.version>8.0.28</mysql-connector.version>
         <druid.version>1.0.5</druid.version>
         <springfox.version>2.6.1</springfox.version>
         <swagger-bootstrap.version>1.6</swagger-bootstrap.version>
