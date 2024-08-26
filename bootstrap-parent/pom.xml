@@ -23,7 +23,7 @@
         <POI.version>3.17</POI.version>
         <mysql-connector.version>5.1.45</mysql-connector.version>
         <druid.version>1.0.5</druid.version>
-        <springfox.version>2.6.1</springfox.version>
+        <springfox.version>2.10.0</springfox.version>
         <swagger-bootstrap.version>1.6</swagger-bootstrap.version>
         <poi-ooxml.version>3.17</poi-ooxml.version>
         <spring-cloud.version>Edgware.SR4</spring-cloud.version>
